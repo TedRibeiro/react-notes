@@ -1,12 +1,15 @@
 import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import React from "react";
 import { NoteModel } from "../models/Models";
+import ViewModal from "./ViewModal";
 
 const Note = (props: NoteModel) => {
+    const [openView, setOpenView] = React.useState(false);
     const { title, subtitle, updatedAt, createdAt } = props;
 
     const viewNote = () => {
-        console.log('viewNote')
+        setOpenView(!openView);
     }
     const editNote = () => {
         console.log('editNote')
@@ -50,6 +53,7 @@ const Note = (props: NoteModel) => {
                     <DeleteOutlined />
                 </IconButton>
             </div>
+            <ViewModal {...props} open={openView} setOpen={() => { setOpenView(!openView) }} />
         </div>
     );
 }

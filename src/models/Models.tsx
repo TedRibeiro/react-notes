@@ -7,3 +7,8 @@ export interface NoteModel {
     createdAt: string
 }
 export interface NotesListModel extends Array<NoteModel>{};
+
+export interface NoteViewModel extends NoteModel {
+    open: boolean,
+    setOpen: () => void
+  }
