@@ -3,10 +3,17 @@ import { NoteModel } from "../models/Models";
 const Note = (props: NoteModel) => {
     const { title, subtitle, updatedAt, createdAt } = props;
 
+    const viewNote = () => {
+        console.log('viewNote')
+    }
+
     return (
-        <div className="p-6 
+        <div onClick={viewNote} 
+             className="p-6 
                         rounded 
                         bg-orange-200
+                        hover:cursor-pointer 
+                        hover:bg-orange-300 
                         flex 
                         flex-col
                         min-h-[12rem]">
