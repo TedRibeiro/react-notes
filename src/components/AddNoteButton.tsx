@@ -10,7 +10,8 @@ const AddNoteButton = () => {
                         justify-center 
                         items-center
                         hover:cursor-pointer
-                        hover:bg-gray-50">
+                        hover:bg-gray-50
+                        min-h-[12rem]">
             <AddOutlined />
         </div>
     );
