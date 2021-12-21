@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import React from "react";
 import { NoteModel } from "../models/Models";
 import ViewModal from "./ViewModal";
@@ -46,12 +46,16 @@ const Note = (props: NoteModel) => {
                             right-2 
                             sm:hidden
                             group-hover:block">
-                <IconButton onClick={editNote}>
-                    <EditOutlined />
-                </IconButton>
-                <IconButton onClick={deleteNote}>
-                    <DeleteOutlined />
-                </IconButton>
+                <Tooltip title="Edit Note">
+                    <IconButton onClick={editNote}>
+                        <EditOutlined />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Delete Note">
+                    <IconButton onClick={deleteNote}>
+                        <DeleteOutlined />
+                    </IconButton>
+                </Tooltip>
             </div>
             <ViewModal {...props} open={openView} setOpen={() => { setOpenView(!openView) }} />
         </div>

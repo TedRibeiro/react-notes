@@ -1,8 +1,10 @@
 import { AddOutlined } from '@mui/icons-material';
+import { Tooltip } from '@mui/material';
 
 const AddNoteButton = () => {
     return (
-        <div className="border-neutral-600 
+        <Tooltip title="Add Note">
+            <div className="border-neutral-600 
                         border-dashed 
                         border-2 
                         rounded 
@@ -12,8 +14,9 @@ const AddNoteButton = () => {
                         hover:cursor-pointer
                         hover:bg-gray-50
                         min-h-[12rem]">
-            <AddOutlined />
-        </div>
+                <AddOutlined />
+            </div>
+        </Tooltip>
     );
 }
 
