@@ -22,3 +22,16 @@ export interface NoteEditModel {
     open: boolean,
     setOpen: () => void
 }
+
+export interface NoteRegisterModel {
+    title: string,
+    subtitle: string,
+    content: string
+}
+
+export interface NoteUpdateModel {
+    id: number,
+    title: string,
+    subtitle: string,
+    content: string
+}
