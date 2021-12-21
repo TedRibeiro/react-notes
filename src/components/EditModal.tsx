@@ -4,6 +4,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import useForm from "../hooks/useForm";
 import { NoteEditModel } from "../models/Models";
+import { updateNote, insertNote } from "../services/NoteService";
 
 const EditModal = (props: NoteEditModel) => {
     let { id, title, subtitle, content, isEdit, open, setOpen } = props;
@@ -16,7 +17,15 @@ const EditModal = (props: NoteEditModel) => {
     });
 
     const submit = () => {
-        console.log('submitted:', values);
+        if (isEdit) {
+            updateNote({
+                id,
+                ...values
+            });
+
+        } else {
+            insertNote(values);
+        }
         setOpen();
     }
 
