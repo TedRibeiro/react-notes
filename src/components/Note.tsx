@@ -31,6 +31,7 @@ const Note = (props: NoteModel) => {
                         hover:bg-orange-300 
                         flex 
                         flex-col
+                        justify-between
                         min-h-[12rem]">
                 <div>
                     <h3 className="font-bold text-xl">{title}</h3>
