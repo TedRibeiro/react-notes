@@ -1,18 +1,21 @@
 import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
-import React from "react";
+import { useState } from "react";
 import { NoteModel } from "../models/Models";
+import EditModal from "./EditModal";
 import ViewModal from "./ViewModal";
 
 const Note = (props: NoteModel) => {
-    const [openView, setOpenView] = React.useState(false);
+    const [openView, setOpenView] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
     const { title, subtitle, updatedAt, createdAt } = props;
+
 
     const viewNote = () => {
         setOpenView(!openView);
     }
     const editNote = () => {
-        console.log('editNote')
+        setOpenEdit(!openEdit);
     }
     const deleteNote = () => {
         console.log('deleteNote')
@@ -58,6 +61,7 @@ const Note = (props: NoteModel) => {
                 </Tooltip>
             </div>
             <ViewModal {...props} open={openView} setOpen={() => { setOpenView(!openView) }} />
+            <EditModal {...props} open={openEdit} setOpen={() => { setOpenEdit(!openEdit) }} isEdit={true} />
         </div>
     );
 }
