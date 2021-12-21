@@ -1,11 +1,13 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, IconButton, Modal, Stack, TextField, Typography } from "@mui/material";
+import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import useForm from "../hooks/useForm";
 import { NoteEditModel } from "../models/Models";
 
 const EditModal = (props: NoteEditModel) => {
     let { id, title, subtitle, content, isEdit, open, setOpen } = props;
+    const [mdValue, setMdValue] = useState(content ?? '');
 
     let { values, handleChange, handleSubmit } = useForm({
         content: content ?? '',
@@ -17,6 +19,11 @@ const EditModal = (props: NoteEditModel) => {
         console.log('submitted:', values);
         setOpen();
     }
+
+    const onMdChange = (val: string) => {
+        setMdValue(val);
+        values.content = val;
+    };
 
     return (
         <Modal
@@ -56,16 +63,23 @@ const EditModal = (props: NoteEditModel) => {
                             name="subtitle"
                             value={values.subtitle}
                         />
+                        <div className="relative">
+                            <MDEditor
+                                onChange={(val) => onMdChange(val ?? '')}
+                                preview='edit'
+                                value={mdValue}
+                            />
+                            <div className="absolute top-0 right-1/3 -z-10">
+                                <TextField
+                                    required
+                                    id="text-field-content"
+                                    onChange={handleChange}
+                                    name="content"
+                                    value={values.content}
+                                />
+                            </div>
+                        </div>
 
-                        <TextField
-                            required
-                            id="text-field-content"
-                            label="Content"
-                            className="bg-white"
-                            onChange={handleChange}
-                            name="content"
-                            value={values.content}
-                        />
                         <Box marginLeft="auto" sx={{ display: 'flex', mt: 2, gap: 2 }}>
                             <Button variant="outlined" onClick={setOpen}>
                                 Cancel
