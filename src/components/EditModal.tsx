@@ -4,11 +4,13 @@ import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import useForm from "../hooks/useForm";
 import { NoteEditModel } from "../models/Models";
-import { updateNote, insertNote } from "../services/NoteService";
+import { useNotes } from "../providers/Notes";
+import { updateNote, insertNote, getAllNotes } from "../services/NoteService";
 
 const EditModal = (props: NoteEditModel) => {
     let { id, title, subtitle, content, isEdit, open, setOpen } = props;
     const [mdValue, setMdValue] = useState(content ?? '');
+    const { setNotes } = useNotes();
 
     let { values, handleChange, handleSubmit } = useForm({
         content: content ?? '',
@@ -27,6 +29,8 @@ const EditModal = (props: NoteEditModel) => {
             insertNote(values);
         }
         setOpen();
+        console.log(getAllNotes());
+        setNotes(getAllNotes());
     }
 
     const onMdChange = (val: string) => {

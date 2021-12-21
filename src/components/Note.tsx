@@ -2,14 +2,18 @@ import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
 import { NoteModel } from "../models/Models";
-import { deleteNoteById } from "../services/NoteService";
+import { useNotes } from "../providers/Notes";
+import { deleteNoteById, getAllNotes } from "../services/NoteService";
 import EditModal from "./EditModal";
 import ViewModal from "./ViewModal";
 
 const Note = (props: NoteModel) => {
     const [openView, setOpenView] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
+    
     const { id, title, subtitle, updatedAt, createdAt } = props;
+    
+    const {setNotes} = useNotes();
 
 
     const viewNote = () => {
@@ -20,6 +24,7 @@ const Note = (props: NoteModel) => {
     }
     const deleteNote = () => {
         deleteNoteById(id);
+        setNotes(getAllNotes());
     }
 
     return (
