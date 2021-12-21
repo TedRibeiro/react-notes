@@ -26,7 +26,7 @@ export const updateNote = (data: NoteUpdateModel): void => {
     }
 }
 
-export const deleteNote = (id: number): void => {
+export const deleteNoteById = (id: number): void => {
     let notes = getAllNotes();
     notes = notes.filter(x => x.id !== id);
     localStorage.setItem(KEYS.allNotes, JSON.stringify(notes));
